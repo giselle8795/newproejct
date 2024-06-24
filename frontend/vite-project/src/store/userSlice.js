@@ -1,4 +1,4 @@
-import { craeteSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     userData: {
@@ -13,7 +13,7 @@ const initialState = {
     error: ''
 }
 
-const userSlice = craeteSlice({
+const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {},
