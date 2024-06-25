@@ -23,14 +23,23 @@ mongoose.connect(process.env.MONGO_URI)
 //app.use('/haha', express.static(uploadsPath));
 app.use(express.static(path.join(__dirname, '../src/uploads')));
 
-app.get('/', (req, res) => {
-    res.send('안녕하세요');
+app.get('/', (req, res, next) => {
+    setImmediate(() => { next(new Error('it is an error') )});
+
 });
+
 
 app.post('/', (req, res) => {
     console.log(req.body);
     res.json(req.body);
 });
+
+
+
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.send(error.message || '서버에서 에러가 났습니다.');
+})
 
 app.listen(port, () => {
     console.log(`${port}번에서 실행이 되었습니다.`);
