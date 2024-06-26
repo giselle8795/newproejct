@@ -28,12 +28,8 @@ app.get('/', (req, res, next) => {
 
 });
 
-
-app.post('/', (req, res) => {
-    console.log(req.body);
-    res.json(req.body);
-});
-
+ 
+app.use('/users', require('./routes/users'));
 
 
 app.use((error, req, res, next) => {
