@@ -34,3 +34,19 @@ export const loginUser = createAsyncThunk(
         }
     }
 )
+
+export const authUser = createAsyncThunk(
+    "user/authUser",  // 여기서 이름을 'user/authUser'로 수정
+    async (_, thunkAPI) => {
+        try {
+            const response = await axiosInstance.get(
+                `/users/auth`
+            );
+
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return thunkAPI.rejectWithValue(error.response.data || error.message);
+        }
+    }
+)
